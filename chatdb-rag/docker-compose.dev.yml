@@ -9,9 +9,9 @@ services:
       - "3002:3000"
     volumes:
       - ./src:/app/src
+      - ./app:/app/app
       - ./public:/app/public
-      - ./index.html:/app/index.html
-      - ./vite.config.js:/app/vite.config.js
+      - ./next.config.ts:/app/next.config.ts
       - ./package.json:/app/package.json
       - /app/node_modules
     environment:
