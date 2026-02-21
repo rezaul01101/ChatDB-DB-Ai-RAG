@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5003:5003"
+    env_file:
+      - .env.dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: chatdb_rag
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - chatdb_rag_dev_data:/var/lib/postgresql/data
+      - ./bkp:/var/lib/postgresql/data # Optional: for database backups
+
+volumes:
+  chatdb_rag_dev_data:

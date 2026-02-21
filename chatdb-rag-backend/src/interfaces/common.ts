@@ -1,0 +1,28 @@
+import { IGenericErrorMessage } from './error';
+
+export type IGenericResponse<T> = {
+  meta: {
+    page: number;
+    limit: number;
+    total: number;
+  };
+  data: T;
+};
+
+export type IGenericErrorResponse = {
+  statusCode: number;
+  message: string;
+  errorMessages: IGenericErrorMessage[];
+};
+export type TransactionTypes = {
+  expense:string
+  income:string
+  saving:string
+  goal:string
+};
+
+const USER_ROLE = {
+  superAdmin: "superAdmin",
+  user: "user",
+} as const;
+export type TUserRole = keyof typeof USER_ROLE;

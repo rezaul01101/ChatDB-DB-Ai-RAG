@@ -1,0 +1,50 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/app/logs/winston/successes/.15558e0e1391cc25871e98c40d8ee6f2ba86140a-audit.json",
+    "files": [
+        {
+            "date": 1770471815209,
+            "name": "/app/logs/winston/successes/2026-07-02-13-success.log",
+            "hash": "8c3493429c0a8fcbb4dd832581fb41010a71b58c1de0f3819fcc21bc04611e05"
+        },
+        {
+            "date": 1770472828280,
+            "name": "/app/logs/winston/successes/2026-07-02-14-success.log",
+            "hash": "a0e14890d19859781069aca635b14907e92b51545ce681897d5a352acec6f0fb"
+        },
+        {
+            "date": 1770483028918,
+            "name": "/app/logs/winston/successes/2026-07-02-16-success.log",
+            "hash": "5cf5c6f2d2387f76b6016cd657b383f39550c44209a34c25356f2e678a860f1a"
+        },
+        {
+            "date": 1770529369774,
+            "name": "/app/logs/winston/successes/2026-08-02-05-success.log",
+            "hash": "eda1869881d27f97f31e1df9aeacaf86f3196d4c17d0783631be36dd748981d0"
+        },
+        {
+            "date": 1771290316005,
+            "name": "/app/logs/winston/successes/2026-17-02-01-success.log",
+            "hash": "e7b8b57702adba631aea51b3e1ac95b6041bb058b940eb16be1e461d3b7780fc"
+        },
+        {
+            "date": 1771376555617,
+            "name": "/app/logs/winston/successes/2026-18-02-01-success.log",
+            "hash": "cb45a6b1245c4becf28bb6108e75d03517de210233428da2a4eee26d2a77c317"
+        },
+        {
+            "date": 1771647349679,
+            "name": "/app/logs/winston/successes/2026-21-02-04-success.log",
+            "hash": "46579648acad7cd1d4c16273eacb396df5f6cb877b4b5fd62b5f3aa43773eb1c"
+        },
+        {
+            "date": 1771651950647,
+            "name": "/app/logs/winston/successes/2026-21-02-05-success.log",
+            "hash": "00453aa18f6bfdc653d2939348215c444a38450a7aae8f952957e5e7800426d8"
+        }
+    ],
+    "hashType": "sha256"
+}

@@ -1,0 +1,185 @@
+Sun Feb 08 2026 5:41:15 } [msg] error: 
+Invalid `prisma.ledger.findMany()` invocation in
+/app/src/app/modules/ledger/ledger.service.ts:102:39
+
+   99   endDate = new Date(yearNum, monthNum, 0, 23, 59, 59);
+  100 }
+  101 
+→ 102 const ledgers = await prisma.ledger.findMany({
+        where: {
+          userId: 1,
+          type: undefined
+        },
+        include: {
+          transactions: {
+            where: {
+              date: {
+                gte: new Date("Invalid Date"),
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+                lte: new Date("Invalid Date")
+              }
+            },
+            select: {
+              amount: true,
+              accountId: true,
+              account: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          },
+          subLedgers: {
+            select: {
+              name: true,
+              id: true
+            }
+          }
+        },
+        orderBy: {
+          id: "desc"
+        }
+      })
+
+Invalid value for argument `gte`: Provided Date object is invalid. Expected Date.
+Sun Feb 08 2026 5:41:15 } [msg] error: 
+Invalid `prisma.ledger.findMany()` invocation in
+/app/src/app/modules/ledger/ledger.service.ts:102:39
+
+   99   endDate = new Date(yearNum, monthNum, 0, 23, 59, 59);
+  100 }
+  101 
+→ 102 const ledgers = await prisma.ledger.findMany({
+        where: {
+          userId: 1,
+          type: undefined
+        },
+        include: {
+          transactions: {
+            where: {
+              date: {
+                gte: new Date("Invalid Date"),
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+                lte: new Date("Invalid Date")
+              }
+            },
+            select: {
+              amount: true,
+              accountId: true,
+              account: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          },
+          subLedgers: {
+            select: {
+              name: true,
+              id: true
+            }
+          }
+        },
+        orderBy: {
+          id: "desc"
+        }
+      })
+
+Invalid value for argument `gte`: Provided Date object is invalid. Expected Date.
+Sun Feb 08 2026 5:41:29 } [msg] error: 
+Invalid `prisma.ledger.findMany()` invocation in
+/app/src/app/modules/ledger/ledger.service.ts:102:39
+
+   99   endDate = new Date(yearNum, monthNum, 0, 23, 59, 59);
+  100 }
+  101 
+→ 102 const ledgers = await prisma.ledger.findMany({
+        where: {
+          userId: 1,
+          type: "EXPENSE"
+        },
+        include: {
+          transactions: {
+            where: {
+              date: {
+                gte: new Date("Invalid Date"),
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+                lte: new Date("Invalid Date")
+              }
+            },
+            select: {
+              amount: true,
+              accountId: true,
+              account: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          },
+          subLedgers: {
+            select: {
+              name: true,
+              id: true
+            }
+          }
+        },
+        orderBy: {
+          id: "desc"
+        }
+      })
+
+Invalid value for argument `gte`: Provided Date object is invalid. Expected Date.
+Sun Feb 08 2026 5:41:29 } [msg] error: 
+Invalid `prisma.ledger.findMany()` invocation in
+/app/src/app/modules/ledger/ledger.service.ts:102:39
+
+   99   endDate = new Date(yearNum, monthNum, 0, 23, 59, 59);
+  100 }
+  101 
+→ 102 const ledgers = await prisma.ledger.findMany({
+        where: {
+          userId: 1,
+          type: "INCOME"
+        },
+        include: {
+          transactions: {
+            where: {
+              date: {
+                gte: new Date("Invalid Date"),
+                     ~~~~~~~~~~~~~~~~~~~~~~~~
+                lte: new Date("Invalid Date")
+              }
+            },
+            select: {
+              amount: true,
+              accountId: true,
+              account: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          },
+          subLedgers: {
+            select: {
+              name: true,
+              id: true
+            }
+          }
+        },
+        orderBy: {
+          id: "desc"
+        }
+      })
+
+Invalid value for argument `gte`: Provided Date object is invalid. Expected Date.
+Sun Feb 08 2026 5:48:24 } [msg] error: 
+Invalid `prisma.transaction.create()` invocation in
+/app/src/app/modules/transaction/transaction.service.ts:11:43
+
+   8 ) => {
+   9   const { amount, description, date, ledgerId, subLedgerId,accountId } = transactionData;
+  10 
+→ 11   const result = await prisma.transaction.create(
+Foreign key constraint violated on the constraint: `Transaction_accountId_fkey`

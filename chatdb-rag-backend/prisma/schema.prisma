@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                Int                @id @default(autoincrement())
+  name              String
+  email             String             @unique
+  image             String?
+  password          String
+  deletedAt         DateTime?          @map(name: "deleted_at")
+  createdAt         DateTime           @default(now()) @map(name: "created_at")
+  updatedAt         DateTime?          @updatedAt @map(name: "updated_at")
+  passwordResetOtps PasswordResetOtp[]
+  accounts          Account[]
+  ledgers           Ledger[]
+  subLedgers        SubLedger[]
+  budgets           Budget[]
+  transactions      Transaction[]
+}
+
+model PasswordResetOtp {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @map("user_id")
+  otp       String    @db.VarChar(10)
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("password_reset_otps")
+}
+
+// Represents physical or digital locations of money (e.g., Bank, Cash, Savings)
+model Account {
+  id           Int           @id @default(autoincrement())
+  name         String // e.g., "Chase Bank", "Physical Wallet"
+  type         AccountType // Enum: BANK, CASH, SAVINGS
+  balance      Decimal       @default(0)
+  description  String?       @db.Text
+  icon         String?
+  color        String?
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+}
+
+// Represents the "Ledger" or Categories (e.g., Food, Rent, Salary)
+model Ledger {
+  id           Int           @id @default(autoincrement())
+  name         String
+  type         LedgerType // Enum: INCOME, EXPENSE
+  description  String?
+  icon         String?
+  color        String?
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+  budgets      Budget[]
+  subLedgers   SubLedger[]
+}
+
+model SubLedger {
+  id           Int           @id @default(autoincrement())
+  name         String
+  icon         String?
+  color        String?
+  ledgerId     Int
+  ledger       Ledger        @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions Transaction[]
+}
+
+// Transactions record the movement of money
+model Transaction {
+  id           Int      @id @default(autoincrement())
+  beforeAmount Decimal @default(0)
+  amount       Decimal
+  afterAmount  Decimal @default(0)
+  date         DateTime @default(now())
+  description  String?
+
+  // Relations
+  accountId Int?
+  account   Account? @relation(fields: [accountId], references: [id])
+
+  ledgerId Int
+  ledger   Ledger @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
+
+  subLedgerId Int?
+  subLedger   SubLedger? @relation(fields: [subLedgerId], references: [id])
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Budget targets for specific ledgers per month
+model Budget {
+  id       Int     @id @default(autoincrement())
+  amount   Decimal // The limit user sets
+  month    Int // 1-12
+  year     Int
+  icon     String?
+  color    String?
+  ledgerId Int
+  ledger   Ledger  @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum AccountType {
+  BANK
+  CASH
+  SAVINGS
+  CREDIT_CARD
+}
+
+enum LedgerType {
+  INCOME
+  EXPENSE
+}
