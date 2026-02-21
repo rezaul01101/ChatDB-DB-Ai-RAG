@@ -44,6 +44,21 @@
             "date": 1771651950649,
             "name": "/app/logs/winston/errors/2026-21-02-05-error.log",
             "hash": "d1b6ce62229c1f04256c80a7f92959e89ec45a0a9e94534bf2b30f411dca282d"
+        },
+        {
+            "date": 1771657107456,
+            "name": "/app/logs/winston/errors/2026-21-02-06-error.log",
+            "hash": "d0b2a9851c8af60ff5ee6a13ddd66e1109750dddc18cc877fdcccbc489a1e3e0"
+        },
+        {
+            "date": 1771657888875,
+            "name": "/app/logs/winston/errors/2026-21-02-07-error.log",
+            "hash": "12f9f2c487cf3488f96e881414946fa74340a7c6a963fef7a411ad2e16264a4f"
+        },
+        {
+            "date": 1771666110401,
+            "name": "/app/logs/winston/errors/2026-21-02-09-error.log",
+            "hash": "9908b44fc64146fb7cf1f695a2954dc440e677600ba842fcd003defe8703dd0b"
         }
     ],
     "hashType": "sha256"

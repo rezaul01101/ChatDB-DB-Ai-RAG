@@ -23,11 +23,7 @@ model User {
   createdAt         DateTime           @default(now()) @map(name: "created_at")
   updatedAt         DateTime?          @updatedAt @map(name: "updated_at")
   passwordResetOtps PasswordResetOtp[]
-  accounts          Account[]
-  ledgers           Ledger[]
-  subLedgers        SubLedger[]
-  budgets           Budget[]
-  transactions      Transaction[]
+  projects         Projects[]
 }
 
 model PasswordResetOtp {
@@ -45,93 +41,20 @@ model PasswordResetOtp {
   @@map("password_reset_otps")
 }
 
-// Represents physical or digital locations of money (e.g., Bank, Cash, Savings)
-model Account {
-  id           Int           @id @default(autoincrement())
-  name         String // e.g., "Chase Bank", "Physical Wallet"
-  type         AccountType // Enum: BANK, CASH, SAVINGS
-  balance      Decimal       @default(0)
-  description  String?       @db.Text
-  icon         String?
-  color        String?
-  userId       Int
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  transactions Transaction[]
-}
+model Projects {
+  id          String    @id @default(uuid())
+  projectName String
+  databaseType String
+  host        String
+  port        String
+  databaseName String
+  username    String
+  password    String
+  useSSL      Boolean   @default(false)
 
-// Represents the "Ledger" or Categories (e.g., Food, Rent, Salary)
-model Ledger {
-  id           Int           @id @default(autoincrement())
-  name         String
-  type         LedgerType // Enum: INCOME, EXPENSE
-  description  String?
-  icon         String?
-  color        String?
-  userId       Int
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  transactions Transaction[]
-  budgets      Budget[]
-  subLedgers   SubLedger[]
-}
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-model SubLedger {
-  id           Int           @id @default(autoincrement())
-  name         String
-  icon         String?
-  color        String?
-  ledgerId     Int
-  ledger       Ledger        @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
-  userId       Int
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  transactions Transaction[]
-}
-
-// Transactions record the movement of money
-model Transaction {
-  id           Int      @id @default(autoincrement())
-  beforeAmount Decimal @default(0)
-  amount       Decimal
-  afterAmount  Decimal @default(0)
-  date         DateTime @default(now())
-  description  String?
-
-  // Relations
-  accountId Int?
-  account   Account? @relation(fields: [accountId], references: [id])
-
-  ledgerId Int
-  ledger   Ledger @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
-
-  subLedgerId Int?
-  subLedger   SubLedger? @relation(fields: [subLedgerId], references: [id])
-
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-// Budget targets for specific ledgers per month
-model Budget {
-  id       Int     @id @default(autoincrement())
-  amount   Decimal // The limit user sets
-  month    Int // 1-12
-  year     Int
-  icon     String?
-  color    String?
-  ledgerId Int
-  ledger   Ledger  @relation(fields: [ledgerId], references: [id], onDelete: Cascade)
-
-  userId Int
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-enum AccountType {
-  BANK
-  CASH
-  SAVINGS
-  CREDIT_CARD
-}
-
-enum LedgerType {
-  INCOME
-  EXPENSE
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }

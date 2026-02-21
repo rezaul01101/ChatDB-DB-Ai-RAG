@@ -13,6 +13,12 @@ router.post(
   // validateRequest(LedgerValidation.createLedgerZodSchema),
   RagController.connectDB
 );
+router.post(
+  "/create-project",
+  // auth("user"),
+  // validateRequest(LedgerValidation.createLedgerZodSchema),
+  RagController.createProject
+);
 
 
 export const RagRoute = router;

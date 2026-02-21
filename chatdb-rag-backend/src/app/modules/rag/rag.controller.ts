@@ -23,6 +23,25 @@ const connectDB = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createProject = catchAsync(async (req: Request, res: Response) => {
+  const { ...projectData } = req.body;
+  const result = await RagService.createProjectService(projectData);
+  if (!result) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Project not created. Please try again"
+    );
+  }
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Project created successfully",
+    data: result,
+  });
+});
+
 export const RagController = {
   connectDB,
+  createProject,
 };

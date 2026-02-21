@@ -28,27 +28,7 @@ export type User = Prisma.UserModel
  */
 export type PasswordResetOtp = Prisma.PasswordResetOtpModel
 /**
- * Model Account
+ * Model Projects
  * 
  */
-export type Account = Prisma.AccountModel
-/**
- * Model Ledger
- * 
- */
-export type Ledger = Prisma.LedgerModel
-/**
- * Model SubLedger
- * 
- */
-export type SubLedger = Prisma.SubLedgerModel
-/**
- * Model Transaction
- * 
- */
-export type Transaction = Prisma.TransactionModel
-/**
- * Model Budget
- * 
- */
-export type Budget = Prisma.BudgetModel
+export type Projects = Prisma.ProjectsModel

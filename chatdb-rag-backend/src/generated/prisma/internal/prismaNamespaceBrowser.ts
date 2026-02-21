@@ -53,11 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   PasswordResetOtp: 'PasswordResetOtp',
-  Account: 'Account',
-  Ledger: 'Ledger',
-  SubLedger: 'SubLedger',
-  Transaction: 'Transaction',
-  Budget: 'Budget'
+  Projects: 'Projects'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -103,73 +99,22 @@ export const PasswordResetOtpScalarFieldEnum = {
 export type PasswordResetOtpScalarFieldEnum = (typeof PasswordResetOtpScalarFieldEnum)[keyof typeof PasswordResetOtpScalarFieldEnum]
 
 
-export const AccountScalarFieldEnum = {
+export const ProjectsScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  type: 'type',
-  balance: 'balance',
-  description: 'description',
-  icon: 'icon',
-  color: 'color',
-  userId: 'userId'
+  projectName: 'projectName',
+  databaseType: 'databaseType',
+  host: 'host',
+  port: 'port',
+  databaseName: 'databaseName',
+  username: 'username',
+  password: 'password',
+  useSSL: 'useSSL',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
-export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
-
-
-export const LedgerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  type: 'type',
-  description: 'description',
-  icon: 'icon',
-  color: 'color',
-  userId: 'userId'
-} as const
-
-export type LedgerScalarFieldEnum = (typeof LedgerScalarFieldEnum)[keyof typeof LedgerScalarFieldEnum]
-
-
-export const SubLedgerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  icon: 'icon',
-  color: 'color',
-  ledgerId: 'ledgerId',
-  userId: 'userId'
-} as const
-
-export type SubLedgerScalarFieldEnum = (typeof SubLedgerScalarFieldEnum)[keyof typeof SubLedgerScalarFieldEnum]
-
-
-export const TransactionScalarFieldEnum = {
-  id: 'id',
-  beforeAmount: 'beforeAmount',
-  amount: 'amount',
-  afterAmount: 'afterAmount',
-  date: 'date',
-  description: 'description',
-  accountId: 'accountId',
-  ledgerId: 'ledgerId',
-  subLedgerId: 'subLedgerId',
-  userId: 'userId'
-} as const
-
-export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
-
-
-export const BudgetScalarFieldEnum = {
-  id: 'id',
-  amount: 'amount',
-  month: 'month',
-  year: 'year',
-  icon: 'icon',
-  color: 'color',
-  ledgerId: 'ledgerId',
-  userId: 'userId'
-} as const
-
-export type BudgetScalarFieldEnum = (typeof BudgetScalarFieldEnum)[keyof typeof BudgetScalarFieldEnum]
+export type ProjectsScalarFieldEnum = (typeof ProjectsScalarFieldEnum)[keyof typeof ProjectsScalarFieldEnum]
 
 
 export const SortOrder = {

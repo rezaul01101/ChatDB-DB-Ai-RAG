@@ -37,6 +37,14 @@ const connectDBService = async (dbData: any) => {
   };
 };
 
+const createProjectService = async (projectData: any) => {
+  const result = await prisma.projects.create({
+    data: projectData,
+  });
+  return result;
+};
+
 export const RagService = {
   connectDBService,
+  createProjectService,
 };
