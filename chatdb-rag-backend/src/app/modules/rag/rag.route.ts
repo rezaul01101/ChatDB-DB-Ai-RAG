@@ -19,6 +19,12 @@ router.post(
   // validateRequest(LedgerValidation.createLedgerZodSchema),
   RagController.createProject
 );
+router.get(
+  "/projects",
+  // auth("user"),
+  // validateRequest(LedgerValidation.createLedgerZodSchema),
+  RagController.getProjects
+);
 
 
 export const RagRoute = router;

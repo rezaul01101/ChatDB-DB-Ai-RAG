@@ -38,13 +38,35 @@ const connectDBService = async (dbData: any) => {
 };
 
 const createProjectService = async (projectData: any) => {
+  console.log(projectData);
+
+  // Map the incoming data to match Prisma schema field names
+  const data: any = {
+    projectName: projectData.projectName || projectData.project_name,
+    databaseType: projectData.databaseType || projectData.database_type,
+    host: projectData.host,
+    port: projectData.port ? String(projectData.port) : null,
+    databaseName: projectData.databaseName || projectData.database_name,
+    username: projectData.username,
+    password: projectData.password,
+    useSSL: projectData.useSSL ?? projectData.use_ssl ?? false,
+    selectedTables: projectData.selectedTables || projectData.selected_tables || [],
+    userId: 1,
+  };
+
   const result = await prisma.projects.create({
-    data: projectData,
+    data,
   });
+  return result;
+};
+
+const getProjectsService = async () => {
+  const result = await prisma.projects.findMany();
   return result;
 };
 
 export const RagService = {
   connectDBService,
   createProjectService,
+  getProjectsService,
 };

@@ -10,7 +10,7 @@ import {
 } from "./auth.interface";
 import { createToken } from "./auth.utils";
 import { prisma } from "../../../shared/prisma";
-import { LedgerType, User } from "../../../generated/prisma/client";
+import { User } from "../../../generated/prisma/client";
 import { email } from "zod";
 import { Resend } from "resend";
 
@@ -84,63 +84,7 @@ const insertIntoDB = async (data: User): Promise<User> => {
       password: encodedPassword,
     },
   });
-  if (result) {
-    const ledgerDefaultData = [
-      {
-        name: "Health",
-        type: LedgerType.EXPENSE,
-        userId: Number(result.id),
-        icon: "BriefcaseMedical",
-        color: "emerald",
-      },
-      {
-        name: "Food and Groceries",
-        type: LedgerType.EXPENSE,
-        userId: Number(result.id),
-        icon: "UtensilsCrossed",
-        color: "yellow",
-      },
-      {
-        name: "Transport",
-        type: LedgerType.EXPENSE,
-        userId: Number(result.id),
-        icon: "Bus",
-        color: "blue",
-      },
-      {
-        name: "Home Bills",
-        type: LedgerType.EXPENSE,
-        userId: Number(result.id),
-        icon: "House",
-        color: "orange",
-      },
-      {
-        name: "Entertainment",
-        type: LedgerType.EXPENSE,
-        userId: Number(result.id),
-        icon: "Clapperboard",
-        color: "purple",
-      },
-      {
-        name: "Salary",
-        type: LedgerType.INCOME,
-        userId: Number(result.id),
-        icon: "Wallet",
-        color: "cyan",
-      },
-      {
-        name: "Business",
-        type: LedgerType.INCOME,
-        userId: Number(result.id),
-        icon: "Handshake",
-        color: "green",
-      },
-    ];
-    const ledgerDefaultCreate = await prisma.ledger.createMany({
-      data: ledgerDefaultData,
-      skipDuplicates: true,
-    });
-  }
+
   return result;
 };
 

@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Transaction" ADD COLUMN     "afterAmount" DECIMAL(65,30) NOT NULL DEFAULT 0,
-ADD COLUMN     "beforeAmount" DECIMAL(65,30) NOT NULL DEFAULT 0;

@@ -74,6 +74,7 @@ export type ProjectsCountAggregateOutputType = {
   username: number
   password: number
   useSSL: number
+  selectedTables: number
   userId: number
   createdAt: number
   updatedAt: number
@@ -129,6 +130,7 @@ export type ProjectsCountAggregateInputType = {
   username?: true
   password?: true
   useSSL?: true
+  selectedTables?: true
   userId?: true
   createdAt?: true
   updatedAt?: true
@@ -231,6 +233,7 @@ export type ProjectsGroupByOutputType = {
   username: string
   password: string
   useSSL: boolean
+  selectedTables: string[]
   userId: number
   createdAt: Date
   updatedAt: Date
@@ -269,6 +272,7 @@ export type ProjectsWhereInput = {
   username?: Prisma.StringFilter<"Projects"> | string
   password?: Prisma.StringFilter<"Projects"> | string
   useSSL?: Prisma.BoolFilter<"Projects"> | boolean
+  selectedTables?: Prisma.StringNullableListFilter<"Projects">
   userId?: Prisma.IntFilter<"Projects"> | number
   createdAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
@@ -285,6 +289,7 @@ export type ProjectsOrderByWithRelationInput = {
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   useSSL?: Prisma.SortOrder
+  selectedTables?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -304,6 +309,7 @@ export type ProjectsWhereUniqueInput = Prisma.AtLeast<{
   username?: Prisma.StringFilter<"Projects"> | string
   password?: Prisma.StringFilter<"Projects"> | string
   useSSL?: Prisma.BoolFilter<"Projects"> | boolean
+  selectedTables?: Prisma.StringNullableListFilter<"Projects">
   userId?: Prisma.IntFilter<"Projects"> | number
   createdAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
@@ -320,6 +326,7 @@ export type ProjectsOrderByWithAggregationInput = {
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   useSSL?: Prisma.SortOrder
+  selectedTables?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -343,6 +350,7 @@ export type ProjectsScalarWhereWithAggregatesInput = {
   username?: Prisma.StringWithAggregatesFilter<"Projects"> | string
   password?: Prisma.StringWithAggregatesFilter<"Projects"> | string
   useSSL?: Prisma.BoolWithAggregatesFilter<"Projects"> | boolean
+  selectedTables?: Prisma.StringNullableListFilter<"Projects">
   userId?: Prisma.IntWithAggregatesFilter<"Projects"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Projects"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Projects"> | Date | string
@@ -358,6 +366,7 @@ export type ProjectsCreateInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutProjectsInput
@@ -373,6 +382,7 @@ export type ProjectsUncheckedCreateInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   userId: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -388,6 +398,7 @@ export type ProjectsUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
@@ -403,6 +414,7 @@ export type ProjectsUncheckedUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -418,6 +430,7 @@ export type ProjectsCreateManyInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   userId: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -433,6 +446,7 @@ export type ProjectsUpdateManyMutationInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -447,6 +461,7 @@ export type ProjectsUncheckedUpdateManyInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -462,6 +477,14 @@ export type ProjectsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type ProjectsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   projectName?: Prisma.SortOrder
@@ -472,6 +495,7 @@ export type ProjectsCountOrderByAggregateInput = {
   username?: Prisma.SortOrder
   password?: Prisma.SortOrder
   useSSL?: Prisma.SortOrder
+  selectedTables?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -557,8 +581,17 @@ export type ProjectsUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ProjectsScalarWhereInput | Prisma.ProjectsScalarWhereInput[]
 }
 
+export type ProjectsCreateselectedTablesInput = {
+  set: string[]
+}
+
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type ProjectsUpdateselectedTablesInput = {
+  set?: string[]
+  push?: string | string[]
 }
 
 export type ProjectsCreateWithoutUserInput = {
@@ -571,6 +604,7 @@ export type ProjectsCreateWithoutUserInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -585,6 +619,7 @@ export type ProjectsUncheckedCreateWithoutUserInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -628,6 +663,7 @@ export type ProjectsScalarWhereInput = {
   username?: Prisma.StringFilter<"Projects"> | string
   password?: Prisma.StringFilter<"Projects"> | string
   useSSL?: Prisma.BoolFilter<"Projects"> | boolean
+  selectedTables?: Prisma.StringNullableListFilter<"Projects">
   userId?: Prisma.IntFilter<"Projects"> | number
   createdAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Projects"> | Date | string
@@ -643,6 +679,7 @@ export type ProjectsCreateManyUserInput = {
   username: string
   password: string
   useSSL?: boolean
+  selectedTables?: Prisma.ProjectsCreateselectedTablesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -657,6 +694,7 @@ export type ProjectsUpdateWithoutUserInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -671,6 +709,7 @@ export type ProjectsUncheckedUpdateWithoutUserInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -685,6 +724,7 @@ export type ProjectsUncheckedUpdateManyWithoutUserInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   useSSL?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  selectedTables?: Prisma.ProjectsUpdateselectedTablesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -701,6 +741,7 @@ export type ProjectsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   username?: boolean
   password?: boolean
   useSSL?: boolean
+  selectedTables?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -717,6 +758,7 @@ export type ProjectsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   username?: boolean
   password?: boolean
   useSSL?: boolean
+  selectedTables?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -733,6 +775,7 @@ export type ProjectsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   username?: boolean
   password?: boolean
   useSSL?: boolean
+  selectedTables?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -749,12 +792,13 @@ export type ProjectsSelectScalar = {
   username?: boolean
   password?: boolean
   useSSL?: boolean
+  selectedTables?: boolean
   userId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "projectName" | "databaseType" | "host" | "port" | "databaseName" | "username" | "password" | "useSSL" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["projects"]>
+export type ProjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "projectName" | "databaseType" | "host" | "port" | "databaseName" | "username" | "password" | "useSSL" | "selectedTables" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["projects"]>
 export type ProjectsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -780,6 +824,7 @@ export type $ProjectsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     username: string
     password: string
     useSSL: boolean
+    selectedTables: string[]
     userId: number
     createdAt: Date
     updatedAt: Date
@@ -1216,6 +1261,7 @@ export interface ProjectsFieldRefs {
   readonly username: Prisma.FieldRef<"Projects", 'String'>
   readonly password: Prisma.FieldRef<"Projects", 'String'>
   readonly useSSL: Prisma.FieldRef<"Projects", 'Boolean'>
+  readonly selectedTables: Prisma.FieldRef<"Projects", 'String[]'>
   readonly userId: Prisma.FieldRef<"Projects", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Projects", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Projects", 'DateTime'>

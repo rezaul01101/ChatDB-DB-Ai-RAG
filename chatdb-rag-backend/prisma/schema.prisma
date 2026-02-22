@@ -23,7 +23,7 @@ model User {
   createdAt         DateTime           @default(now()) @map(name: "created_at")
   updatedAt         DateTime?          @updatedAt @map(name: "updated_at")
   passwordResetOtps PasswordResetOtp[]
-  projects         Projects[]
+  projects          Projects[]
 }
 
 model PasswordResetOtp {
@@ -42,19 +42,20 @@ model PasswordResetOtp {
 }
 
 model Projects {
-  id          String    @id @default(uuid())
-  projectName String
-  databaseType String
-  host        String
-  port        String
-  databaseName String
-  username    String
-  password    String
-  useSSL      Boolean   @default(false)
+  id             String   @id @default(uuid())
+  projectName    String
+  databaseType   String
+  host           String
+  port           String
+  databaseName   String
+  username       String
+  password       String
+  useSSL         Boolean  @default(false)
+  selectedTables String[] @default([])
 
-  userId      Int
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int?
+  user   User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

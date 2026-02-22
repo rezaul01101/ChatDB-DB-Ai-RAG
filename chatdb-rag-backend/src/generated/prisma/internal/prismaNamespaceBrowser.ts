@@ -109,6 +109,7 @@ export const ProjectsScalarFieldEnum = {
   username: 'username',
   password: 'password',
   useSSL: 'useSSL',
+  selectedTables: 'selectedTables',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

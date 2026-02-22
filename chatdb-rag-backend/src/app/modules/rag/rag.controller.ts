@@ -41,7 +41,25 @@ const createProject = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getProjects = catchAsync(async (req: Request, res: Response) => {
+  const result = await RagService.getProjectsService();
+  if (!result) {
+    throw new ApiError(
+      httpStatus.INTERNAL_SERVER_ERROR,
+      "Projects not found. Please try again"
+    );
+  }
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Projects fetched successfully",
+    data: result,
+  });
+});
+
 export const RagController = {
   connectDB,
   createProject,
+  getProjects,
 };
